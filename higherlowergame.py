@@ -4,8 +4,10 @@ from game_data import data
 account_b=random.choice(data)
 print(logo)
 count=0
+lives=3
 game_should_continue=True
 while game_should_continue:
+
     def format_data(account):
         account_name=account["name"]
         account_desc=account["description"]
@@ -33,9 +35,12 @@ while game_should_continue:
     is_correct=check_answer(guess,a_follower_count,b_follower_count)
     if is_correct:
         count+=1
-        print(f"You're right. Your current score is {count}")
+        print(f"You're right. Your current score is {count}, Lives Remaining:{lives}")
     else:
-        print(f"Sorry, that's wrong. Your final score is {count}")
-        game_should_continue=False
+        lives-=1
+        print(f"Sorry, that's wrong. Your score is {count}, Lives Remaining:{lives}")
+        if lives==0:
+            game_should_continue=False
+            print(f"Game Over!. Your final Score:{count}")
 
 
